@@ -1,6 +1,9 @@
 const mongoosese = require('mongoose');
 
 const gallerySchema = new mongoosese.Schema({
+    username: {
+        type: String,
+    },
     title: {
         type: String,
     },

@@ -11,8 +11,8 @@ exports.getGallery = async (req, res) => {
 
 exports.createGallery = async (req, res) => {
   try {
-    const { title, description, image, song } = req.body;
-    const gallery = new Gallery({ title, description, image, song });
+    const { username, title, description, image, song } = req.body;
+    const gallery = new Gallery({ username, title, description, image, song });
     await gallery.save();
     res.status(201).json(gallery);
   } catch (error) {
@@ -22,11 +22,9 @@ exports.createGallery = async (req, res) => {
 
 exports.getGalleryById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const gallery = await Gallery.findById(id);
-    if (!gallery) {
-      return res.status(404).json({ error: 'Gallery not found' });
-    }
+    const { username } = req.params;
+    const gallery = await Gallery.find({ username });
+
     return res.json(gallery);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
