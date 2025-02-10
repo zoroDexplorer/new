@@ -1,5 +1,4 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { REACT_APP_AWS_ACCESS_KEY_ID, REACT_APP_AWS_SECRET_ACCESS_KEY } from "../config/environment.tsx";
 
 const REGION = "ap-south-1";
 const BUCKET_NAME = "memoriesbucketgallery";
@@ -8,8 +7,8 @@ const BUCKET_NAME = "memoriesbucketgallery";
 const s3Client = new S3Client({
   region: REGION,
   credentials: {
-    accessKeyId: REACT_APP_AWS_ACCESS_KEY_ID || "",
-    secretAccessKey: REACT_APP_AWS_SECRET_ACCESS_KEY || "",
+    accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY|| "",
+    secretAccessKey: import.meta.env.VITE_AWS_SECRET_ACCESS_KEY || "",
   },
 });
 
